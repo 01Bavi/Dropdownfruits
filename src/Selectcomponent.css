@@ -1,0 +1,31 @@
+.dropdown-container {
+    position: relative;
+    width: 250px;
+    margin: 20px;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .dropdown {
+    position: absolute;
+    width: 100%;
+    max-height: 400px;
+    border: 1px solid #ccc;
+    background: #fff;
+  }
+  
+  .dropdown-item {
+    padding: 8px;
+    cursor: pointer;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #f0f0f0;
+  }
+  
