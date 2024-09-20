@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Selectcomponent.css'; 
 import { IoMdArrowDropdown } from "react-icons/io";
+import { IoClose } from "react-icons/io5";
 
 const Selectcomponent = () => {
   const fruits = [
@@ -16,63 +17,99 @@ const Selectcomponent = () => {
     {id:10, name:'Watermelon'},
   ];
 
-  const [inputValue, setInputValue] = useState('');
+  const [firstinputValue, setFirstInputValue] = useState('');
+  const [secondinputValue, setSecondInputValue] = useState('');
   const [filterFruits, setFilterFruits] = useState(fruits);
-  const [open, setOpen] = useState(false);
+  const [openFirstdropdown, setOpenFirstdropdown] = useState(false);
+  const [openSeconddropdown, setOpenSeconddropdown] = useState(false);
 
-  const onInputChange = (e) => {
+  const onInputChange = (e, inputType) => {
     const value = e.target.value;
-    setInputValue(value);
+    if (inputType === 'first') {
+      setFirstInputValue(value);
+      setOpenFirstdropdown(true);
+    } else {
+      setSecondInputValue(value);
+      setOpenSeconddropdown(true);
+    }
     setFilterFruits(
       fruits.filter((fruit) =>
         fruit.name.toLowerCase().includes(value.toLowerCase())
       )
     );
-    setOpen(true); 
+     
   };
 
-  const onItemSelected = (selectedFruit) => {
-    setInputValue(selectedFruit.name);
-    setOpen(false);
-  };
-
-  const onInputClick = () => {
-    setOpen((preview) => !preview);
-  };
-
-  const onKeyDown = (e) => {
-    if (e.key === 'Enter' && filterFruits.length > 0) {
-      onItemSelected(filterFruits[0]); 
+  const onItemSelected = (selectedFruit,inputType) => {
+    if (inputType === 'first') {
+      setFirstInputValue(selectedFruit.name);
+      setOpenFirstdropdown(false);
+    } else {
+      setSecondInputValue(selectedFruit.name);
+      setOpenSeconddropdown(false);
     }
   };
 
+  const onInputClick = (inputType) => {
+    if (inputType === 'first') {
+      setOpenFirstdropdown((preview) => !preview);
+    } else {
+      setOpenSeconddropdown((preview) => !preview);
+    }
+  };
+
+  const onKeyDown = (e, inputType) => {
+    if (e.key === 'Enter' && filterFruits.length > 0) {
+      onItemSelected(filterFruits[0],inputType); 
+    }
+  };
+  const clearInput = (inputType) => {
+    if (inputType === 'first') {
+      setFirstInputValue('');
+      setOpenFirstdropdown(false);
+    } else {
+      setSecondInputValue('');
+      setOpenSeconddropdown(false);
+    }
+    setFilterFruits(fruits);
+  };
+
   return (
+    <>
     <div className="dropdown-container">
       <div className='input-cover'>
       <input
         type="text"
-        value={inputValue}
+        value={firstinputValue}
         placeholder="Select a fruit"
-        onChange={onInputChange}
-        onClick={onInputClick}
-        onKeyDown={onKeyDown}
+        onChange={(e) => onInputChange(e,'first')}
+        onClick={()=>onInputClick('first')}
+        onKeyDown={(e) => onKeyDown(e,'first')}
         className="input-field" 
       />
-      <span class="caret"
-        className='arrow-button'
+      <span 
+        className='close-button'
         role='button'
-        onClick={onInputClick}
+        onClick={()=>onInputClick('first')}
         tabIndex={0}
       > 
       <IoMdArrowDropdown />
       </span>
+      <span 
+        className='arrow-button'
+        role='button'
+        onClick={() => clearInput('first')}
+        tabIndex={0}
+      > 
+      <IoClose />
+      </span>
       </div>
-      {open && (
+      {openFirstdropdown && (
         <div className="dropdown" >
           {filterFruits.map((fruit) => (
             <div
               key={fruit.id}
-              onClick={() => onItemSelected(fruit)}
+              onClick={() => onItemSelected(fruit,'first')}
               className="dropdown-item" 
             >
               {fruit.name} ({fruit.id})
@@ -81,6 +118,50 @@ const Selectcomponent = () => {
         </div>
       )}
     </div>
+
+    <div className="dropdown-container">
+      <div className='input-cover'>
+      <input
+        type="text"
+        value={secondinputValue}
+        placeholder="Select a fruit"
+        onChange={(e) => onInputChange(e, 'second')}
+        onClick={() => onInputClick('second')}
+        onKeyDown={(e) => onKeyDown(e, 'second')}
+        className="input-field" 
+      />
+      <span 
+        className='close-button'
+        role='button'
+        onClick={() => onInputClick('second')}
+        tabIndex={0}
+      > 
+      <IoMdArrowDropdown />
+      </span>
+      <span 
+        className='arrow-button'
+        role='button'
+        onClick={() => clearInput('second')}
+        tabIndex={0}
+      > 
+      <IoClose />
+      </span>
+      </div>
+      {openSeconddropdown && (
+        <div className="dropdown" >
+          {filterFruits.map((fruit) => (
+            <div
+              key={fruit.id}
+              onClick={() => onItemSelected(fruit, 'second')}
+              className="dropdown-item" 
+            >
+              {fruit.name} ({fruit.id})
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+    </>
   );
 };
 
