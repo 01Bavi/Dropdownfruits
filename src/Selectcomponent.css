@@ -10,14 +10,32 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    padding-right: 30px; 
   }
-  
+  .input-cover {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  .arrow-button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 14px;
+    user-select: none;
+  }
   .dropdown {
     position: absolute;
     width: 100%;
-    max-height: 400px;
+    max-height: 200px;
     border: 1px solid #ccc;
     background: #fff;
+    overflow-y: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1; 
+    
   }
   
   .dropdown-item {

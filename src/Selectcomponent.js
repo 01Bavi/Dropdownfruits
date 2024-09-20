@@ -1,10 +1,19 @@
 import React, { useState } from 'react';
 import './Selectcomponent.css'; 
+import { IoMdArrowDropdown } from "react-icons/io";
 
 const Selectcomponent = () => {
   const fruits = [
-    'Apple', 'Banana', 'Grapes', 'Mango',
-    'Orange', 'Papaya', 'Pineapple', 'Strawberry', 'Watermelon',
+    {id:1, name:'Apple'},
+    {id:2, name:'Orange'},
+    {id:3, name:'Grape'},
+    {id:4, name:'Mango'},
+    {id:5, name:'Banana'},
+    {id:6, name:'papaya'},
+    {id:7, name:'pineapple'},
+    {id:8, name:'Strawberry'},
+    {id:9, name:'Guava'},
+    {id:10, name:'Watermelon'},
   ];
 
   const [inputValue, setInputValue] = useState('');
@@ -16,14 +25,14 @@ const Selectcomponent = () => {
     setInputValue(value);
     setFilterFruits(
       fruits.filter((fruit) =>
-        fruit.toLowerCase().includes(value.toLowerCase())
+        fruit.name.toLowerCase().includes(value.toLowerCase())
       )
     );
     setOpen(true); 
   };
 
   const onItemSelected = (selectedFruit) => {
-    setInputValue(selectedFruit);
+    setInputValue(selectedFruit.name);
     setOpen(false);
   };
 
@@ -39,6 +48,7 @@ const Selectcomponent = () => {
 
   return (
     <div className="dropdown-container">
+      <div className='input-cover'>
       <input
         type="text"
         value={inputValue}
@@ -46,17 +56,26 @@ const Selectcomponent = () => {
         onChange={onInputChange}
         onClick={onInputClick}
         onKeyDown={onKeyDown}
-        className="input-field"
+        className="input-field" 
       />
+      <span class="caret"
+        className='arrow-button'
+        role='button'
+        onClick={onInputClick}
+        tabIndex={0}
+      > 
+      <IoMdArrowDropdown />
+      </span>
+      </div>
       {open && (
-        <div className="dropdown">
+        <div className="dropdown" >
           {filterFruits.map((fruit) => (
             <div
-              key={fruit}
+              key={fruit.id}
               onClick={() => onItemSelected(fruit)}
-              className="dropdown-item"
+              className="dropdown-item" 
             >
-              {fruit}
+              {fruit.name} ({fruit.id})
             </div>
           ))}
         </div>
