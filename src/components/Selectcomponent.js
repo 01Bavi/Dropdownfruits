@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Selectcomponent.css'; 
+import '../styles/Selectcomponent.css'; 
 import { IoMdArrowDropdown } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
 

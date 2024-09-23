@@ -1,0 +1,45 @@
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    padding:40px 20px;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+    
+  }
+  .container{
+    max-width: 48rem;
+  }
+  .imagegrid{
+    display: flex; 
+    flex-wrap: wrap;
+    gap: 1.25rem;
+  }
+  .labelone{
+    position: relative;
+  }
+  .altericon{
+    width: 6rem;
+    height: 6rem;
+    cursor: pointer;
+  }
+  .uploadimg{
+    position: absolute;
+    width: 6rem;
+    height: 6rem;
+  }
+  .imgmap{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .inputimg{
+    width: 6rem;
+    height: 6rem;
+    object-fit: cover;
+  }
+ 
+ 
+  
+  

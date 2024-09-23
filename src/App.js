@@ -1,18 +1,16 @@
-import React from 'react'
+import React from 'react';
 import './App.css';
-import Selectcomponent from './Selectcomponent'
-import Formcomponent from './Formcomponent';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+// import Selectcomponent from './components/Selectcomponent';
+import Formcomponent from './components/Formcomponent';
 
 function App() {
   return (
-    <>
-    {/* <Selectcomponent/> */}
-    <Formcomponent/>
+   
+      <>
+        {/* <Selectcomponent/> */}
+        <Formcomponent />
+      </>
     
-    </>
   );
 }
 
