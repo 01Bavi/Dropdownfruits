@@ -8,6 +8,7 @@ import { CircularProgress, IconButton } from "@mui/material";
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import CloseIcon from '@mui/icons-material/Close';
 import '../styles/Formcomponent.css';
+import { useNavigate } from 'react-router-dom';
 
 const initialValues = { 
     Name: "",
@@ -27,6 +28,7 @@ const initialValues = {
 
 const Formcomponent = () => {
   const dispatch = useDispatch();
+  const navigate =useNavigate();
   const [uploadingImage, setUploadingImage] = useState(false);
   const token = localStorage.getItem("token");
 
@@ -46,6 +48,7 @@ const Formcomponent = () => {
     };
     dispatch({ type: 'CREATE_FORM', payload: { data, token } }); 
     console.log(data);
+    navigate('/DisplayForm', { state: { data } });
   };
 
   const formik = useFormik({

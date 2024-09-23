@@ -1,16 +1,17 @@
 import React from 'react';
 import './App.css';
-// import Selectcomponent from './components/Selectcomponent';
 import Formcomponent from './components/Formcomponent';
+import DisplayForm from './components/DisplayForm';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
-   
-      <>
-        {/* <Selectcomponent/> */}
-        <Formcomponent />
-      </>
-    
+    <Router>
+      <Routes>
+        <Route path="/" element={<Formcomponent />} />
+        <Route path="/DisplayForm" element={<DisplayForm />} />
+      </Routes>
+    </Router>
   );
 }
 
