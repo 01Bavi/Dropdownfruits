@@ -1,6 +1,6 @@
-.dropdown-container{
+.dropdown-container {
   margin-top: 50px;
-  margin-left: 50px;
+  margin-left: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,13 +8,27 @@
 }
 
 .input-cover {
+  display: flex; 
+  align-items: center;
   position: relative;
   margin-bottom: 15px;
+}
+
+.input-wrapper {
+  position: relative;
 }
 
 .input-field {
   width: 250px;
   padding: 10px 30px 10px 10px; 
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.id-field {
+  width: 50px; 
+  margin-left: 10px; 
+  padding: 10px; 
   border: 1px solid #ccc;
   border-radius: 4px;
 }
@@ -25,13 +39,13 @@
 }
 
 .arrow-icon {
-  left: 14rem;
+  right: 30px; 
   top: 30%;
   color: #777;
 }
 
 .close-icon {
-  left: 16rem;
+  right: 5px; 
   top: 30%;
   color: #777;
 }
@@ -59,4 +73,10 @@
 
 .dropdown-item:hover {
   background-color: #f1f1f1;
+}
+.close-input-field-button{
+  margin-left: 30px;
+  cursor: pointer;
+  color: #777;
+  
 }
