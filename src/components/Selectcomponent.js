@@ -20,7 +20,9 @@ const SelectComponent = () => {
   const [inputs, setInputs] = useState([{ value: '', id: '', openDropdown: false }]);
   const [filterFruits, setFilterFruits] = useState(fruits);
   const [activeIndex, setActiveIndex] = useState(-1);
+  const [shouldFocusNewInput, setShouldFocusNewInput] = useState(false); 
   const dropdownRefs = useRef([]);
+  const inputRefs = useRef([]); 
 
   useEffect(() => {
     if (activeIndex !== -1 && dropdownRefs.current[activeIndex]) {
@@ -31,6 +33,13 @@ const SelectComponent = () => {
       });
     }
   }, [activeIndex]);
+
+  useEffect(() => {
+    if (shouldFocusNewInput && inputRefs.current[inputs.length - 1]) {
+      inputRefs.current[inputs.length - 1].focus();
+      setShouldFocusNewInput(false); 
+    }
+  }, [inputs, shouldFocusNewInput]);
 
   const onInputChange = (e, index) => {
     const value = e.target.value;
@@ -46,6 +55,13 @@ const SelectComponent = () => {
     setActiveIndex(-1);
   };
 
+  const onIdChange = (e, index) => {
+    const idValue = e.target.value;
+    const newInputs = [...inputs];
+    newInputs[index].id = idValue;
+    setInputs(newInputs);
+  };
+
   const onItemSelected = (selectedFruit, index) => {
     const newInputs = [...inputs];
     newInputs[index].value = selectedFruit.name;
@@ -55,8 +71,9 @@ const SelectComponent = () => {
     setFilterFruits(fruits);
     setActiveIndex(-1);
 
-    if (index === inputs.length - 1 && inputs.length < 5) {
+    if (newInputs.every(input => input.value !== '')) {
       addInputField();
+      setShouldFocusNewInput(true); 
     }
   };
 
@@ -128,6 +145,7 @@ const SelectComponent = () => {
               onKeyDown={(e) => onKeyDown(e, index)}
               className="input-field"
               disabled={index > 0 && inputs[index - 1].value === ''}
+              ref={(el) => (inputRefs.current[index] = el)} 
             />
             <span
               className='icon-button arrow-icon'
@@ -150,8 +168,9 @@ const SelectComponent = () => {
             type="text"
             value={input.id || ''}
             placeholder="ID"
-            readOnly
+            onChange={(e) => onIdChange(e, index)} 
             className="input-field id-field"
+            onFocus={() => setShouldFocusNewInput(false)} 
           />
           <span
             className='close-input-field-button'
@@ -181,7 +200,6 @@ const SelectComponent = () => {
           )}
         </div>
       ))}
-      <button className="add-input-btn" onClick={addInputField}>Add Input</button>
     </div>
   );
 };
