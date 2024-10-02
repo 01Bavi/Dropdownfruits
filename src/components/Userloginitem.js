@@ -19,17 +19,16 @@ const Userloginitem = () => {
     return (
         <div >
             <div className='nav-bar'>
-            <IoMdArrowDropdownCircle className='dropdown-arrow' onClick={openDropdown}/>
+               <IoMdArrowDropdownCircle className='dropdown-arrow' onClick={openDropdown}/>
             </div>
             {open && (
                 <div className='profile-dropdown-container'>
-                <div className='dropdown-menu'>
-
+                   <div className='dropdown-menu'>
                     <ul>
-                    <div className='menu-trigger' onClick={() => alert('see your profile')}>
-                    <LuUserCircle2  className='user-icon'/>
-                    <h3 className='profile-name'>Subin B<br/><span>See your profile</span></h3>
-                    </div>
+                        <div className='menu-trigger' onClick={() => alert('see your profile')}>
+                            <LuUserCircle2  className='user-icon'/>
+                            <h3 className='profile-name'>Subin B<br/><span>See your profile</span></h3>
+                        </div>
                         <DropdownItem 
                             Icon={MdFeedback} 
                             text={"Give feedback"} 
@@ -39,11 +38,9 @@ const Userloginitem = () => {
                             Icon={RiSettings5Fill} 
                             text={"Settings & privacy"} 
                             EndIcon={MdNavigateNext}
-                            
                             onClick={() => alert('Settings & privacy')}
                 
                         />
-        
                         <DropdownItem 
                             Icon={IoHelpCircleSharp} 
                             text={"Help & support"} 

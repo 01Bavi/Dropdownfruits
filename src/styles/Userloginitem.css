@@ -4,7 +4,6 @@
     width:100%;
     background-color: #afacac;
     overflow: hidden;
-    position: relative;
 }
 .dropdown-arrow{
    font-size: 30px;
@@ -20,7 +19,7 @@
     align-items: center;
     background-color: white;
     box-shadow:0 0 10px rgba(0, 0, 0, 0.1) ;
-    border-radius: 5px;
+    border-radius: 5px ;
     width: 250px;
     z-index: 1;
     padding: 10px;

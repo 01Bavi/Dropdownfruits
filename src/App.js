@@ -5,11 +5,15 @@ import DisplayForm from './components/DisplayForm';
 import Selectcomponent from './components/Selectcomponent'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Userloginitem from './components/Userloginitem';
+import Navigationbar from './components/Navigationbar';
 
 function App() {
   return (
     <Router>
       <Routes>
+
+        <Route path="/" element={<Navigationbar />} />
+
         <Route path="/" element={<Userloginitem />} />
         
         <Route path="/" element={<Selectcomponent />} />
